@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Week 1 - Consume API</title>
+  <style>
+    body {
+      font-family: 'Arial', sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #f4f4f9;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+    }
+
+    h1 {
+      color: #4a90e2;
+      margin-bottom: 20px;
+    }
+
+    label {
+      font-size: 1.2em;
+      margin-right: 10px;
+    }
+
+    select {
+      padding: 10px;
+      font-size: 1.2em;
+      border-radius: 5px;
+      border: 1px solid #ddd;
+      margin-bottom: 20px;
+      background-color: #fff;
+    }
+
+    #result {
+      font-size: 1.2em;
+      color: #333;
+      border: 1px solid #ddd;
+      padding: 10px;
+      width: 250px;
+      border-radius: 5px;
+      background-color: #fff;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      text-align: center;
+    }
+
+    p {
+      margin: 5px 0;
+    }
+
+    .container {
+      text-align: center;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container">
+    <h1>Tipo de Cambio</h1>
+    <label for="currency">Seleccione Moneda:</label>
+    <select id="currency" onchange="getExchangeRate()">
+      <option value="usd">USD</option>
+      <option value="eur">EUR</option>
+    </select>
+  
+    <h3>Resultados:</h3>
+    <div id="result"></div>
+  </div>
+
+  <script>
+    const completed = (e) => {
+      const data = JSON.parse(e.target.responseText);
+      document.getElementById('result').innerHTML = `
+        <p>Tipo de Cambio Compra: ${data.TipoCompra}</p>
+        <p>Tipo de Cambio Venta: ${data.TipoVenta}</p>
+      `;
+    };
+
+    const error = () => console.log("Error fetching data");
+
+    function getExchangeRate() {
+      const currency = document.getElementById("currency").value;
+      const ajaxRequest = new XMLHttpRequest();
+      ajaxRequest.addEventListener("load", completed);
+      ajaxRequest.addEventListener("error", error);
+      ajaxRequest.open("GET", `http://localhost:3000/tipocambio?type=${currency}`);
+      ajaxRequest.send();
+    }
+  </script>
+</body>
+
+</html>
