@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Create Teacher</title>
+  <script src="/weeks/week-2/scripts/scriptTeacher.js"></script>
+  <link rel="stylesheet" href="/weeks/week-2/css/styles.css">
+</head>
+<body>
+  <form id="teacherForm">
+    <label for="name">Name:</label>
+    <input type="text" id="teacherName" required><br><br>
+
+    <label for="last Name">Last Name:</label>
+    <input type="text" id="teacherLastName" required><br><br>
+
+    <label for="age">Age:</label>
+    <input type="text" id="age" required><br><br>
+    
+    <label for="subject">Subject:</label>
+    <input type="text" id="teacherSubject" required><br><br>
+  
+    <button type="button" id="createTeacherBtn">Create Teacher</button>
+    <button onclick="window.location.href='listTeachers.html';">List Teachers</button>
+  </form>
+
+  <div id="response"></div>
+
+  <script>
+    document.getElementById('teacherForm').addEventListener('submit', function(event) {
+      event.preventDefault();
+      
+      const name = document.getElementById('name').value;
+      const subject = document.getElementById('subject').value;
+
+      fetch('http://localhost:3000/api/teachers', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ name, subject })
+      })
+      .then(response => response.json())
+      .then(data => {
+        document.getElementById('response').innerHTML = `<p>Teacher created: ${data.name} (${data.subject})</p>`;
+      })
+      .catch(error => console.error('Error:', error));
+    });
+  </script>
+</body>
+</html>
