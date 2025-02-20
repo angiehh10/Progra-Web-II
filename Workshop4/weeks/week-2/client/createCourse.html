@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Manage Courses</title>
+  <script defer src="/weeks/week-2/scripts/scriptCourses.js"></script>
+  <link rel="stylesheet" href="/weeks/week-2/css/styles.css">
+</head>
+<body>
+  <h1>Manage Courses</h1>
+
+  <form id="courseForm">
+    <input type="hidden" id="courseId">
+    
+    <label for="courseName">Name:</label>
+    <input type="text" id="courseName" required><br><br>
+
+    <label for="courseCode">Code:</label>
+    <input type="text" id="courseCode" required><br><br>
+
+    <label for="courseDesc">Description:</label>
+    <input type="text" id="courseDesc" required><br><br>
+
+    <label for="teacherSelect">Teacher:</label>
+    <select id="teacherSelect" required></select><br><br>
+
+    <button type="button" id="saveCourseBtn">Save Course</button>
+    <button onclick="window.location.href='createTeacher.html';">Create Teacher</button>
+  </form>
+
+  <h2>Courses List</h2>
+  <ul id="courseList"></ul>
+</body>
+</html>

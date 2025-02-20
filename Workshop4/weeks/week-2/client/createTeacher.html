@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Create Teacher</title>
+  <script defer src="/weeks/week-2/scripts/scriptTeacher.js"></script>
+  <link rel="stylesheet" href="/weeks/week-2/css/styles.css">
+</head>
+<body>
+  <h1>Create Teachers</h1>
+  <form id="teacherForm">
+    <label for="teacherName">Name:</label>
+    <input type="text" id="teacherName" required><br><br>
+
+    <label for="teacherLastName">Last Name:</label>
+    <input type="text" id="teacherLastName" required><br><br>
+
+    <label for="teacherAge">Age:</label>
+    <input type="number" id="teacherAge" required><br><br>
+    
+    <label for="teacherSubject">Subject:</label>
+    <input type="text" id="teacherSubject" required><br><br>
+  
+    <button type="submit">Create Teacher</button>
+    <button type="button" onclick="window.location.href='listTeachers.html';">List Teachers</button>
+    <button type="button" onclick="window.location.href='createCourse.html';">Courses</button>
+  </form>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      // Pedir permiso para mostrar notificaciones
+      if (Notification.permission !== "granted") {
+        Notification.requestPermission();
+      }
+    });
+
+    document.getElementById('teacherForm').addEventListener('submit', async function(event) {
+      event.preventDefault();
+
+      const name = document.getElementById('teacherName').value;
+      const lastName = document.getElementById('teacherLastName').value;
+      const age = document.getElementById('teacherAge').value;
+      const subject = document.getElementById('teacherSubject').value;
+
+      try {
+        const response = await fetch('http://localhost:3000/api/teachers', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ name, lastName, age, subject })
+        });
+
+        if (!response.ok) {
+          throw new Error('Error creating teacher');
+        }
+
+        const data = await response.json();
+        showNotification(`Teacher Created: ${data.name} ${data.lastName}`);
+
+        // Limpiar los campos después de crear el profesor
+        document.getElementById('teacherForm').reset();
+        
+      } catch (error) {
+        showNotification('Error creating teacher. Try again.');
+        console.error('Error:', error);
+      }
+    });
+
+    function showNotification(message) {
+      if (Notification.permission === "granted") {
+        new Notification("Teacher Management", {
+          body: message,
+          icon: "https://cdn-icons-png.flaticon.com/512/1903/1903162.png" // Icono opcional
+        });
+      }
+    }
+  </script>
+</body>
+</html>

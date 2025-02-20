@@ -1,0 +1,147 @@
+/* ----- General Styles ----- */
+body {
+  font-family: 'Poppins', sans-serif;
+  background-color: #f0f2f5;
+  color: #333;
+  margin: 0;
+  padding: 0;
+}
+
+/* ----- Header ----- */
+header {
+  background: linear-gradient(135deg, #ff7eb3, #ff758c);
+  color: white;
+  text-align: center;
+  padding: 20px;
+  font-size: 26px;
+  font-weight: bold;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+/* ----- Container ----- */
+.container {
+  width: 90%;
+  max-width: 600px;  /* Más compacto */
+  margin: 30px auto;
+  background: white;
+  padding: 20px;
+  border-radius: 12px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s;
+}
+
+.container:hover {
+  transform: scale(1.02);
+}
+
+/* ----- Forms ----- */
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  align-items: center; /* Centrar los elementos del formulario */
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  width: 100%;
+  max-width: 400px; /* Limitar el ancho de los grupos de formulario */
+}
+
+input, textarea {
+  width: 100%;
+  padding: 10px;
+  border: 2px solid #ccc;
+  border-radius: 8px;
+  font-size: 16px;
+  transition: all 0.3s;
+  max-width: 300px; 
+}
+
+input:focus, textarea:focus {
+  border-color: #ff758c;
+  outline: none;
+  box-shadow: 0px 0px 8px rgba(255, 117, 140, 0.5);
+}
+
+label {
+  font-weight: bold;
+  font-size: 14px;
+}
+
+/* ----- Buttons ----- */
+button {
+  background: linear-gradient(135deg, #ff7eb3, #ff758c);
+  color: white;
+  border: none;
+  padding: 12px 20px;
+  font-size: 16px;
+  cursor: pointer;
+  border-radius: 8px;
+  transition: all 0.3s;
+  display: block;
+  margin: 10px auto;
+}
+
+/* Colores adicionales para botones */
+.button-green {
+  background: linear-gradient(135deg, #34e89e, #0f3443);
+}
+
+.button-orange {
+  background: linear-gradient(135deg, #ff9966, #ff5e62);
+}
+
+.button-purple {
+  background: linear-gradient(135deg, #a18cd1, #fbc2eb);
+}
+
+button:hover {
+  transform: translateY(-2px);
+  opacity: 0.9;
+}
+
+/* ----- Tables ----- */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+th, td {
+  padding: 12px;
+  text-align: left;
+}
+
+th {
+  background: linear-gradient(135deg, #ff758c, #ff7eb3);
+  color: white;
+  font-weight: bold;
+}
+
+td {
+  background-color: white;
+  border-bottom: 1px solid #ddd;
+}
+
+/* Alternating row colors */
+tr:nth-child(even) {
+  background-color: #f8f9fa;
+}
+
+/* ----- Footer ----- */
+footer {
+  text-align: center;
+  padding: 15px;
+  background: linear-gradient(135deg, #ff758c, #ff7eb3);
+  color: white;
+  margin-top: 30px;
+  font-size: 14px;
+  font-weight: bold;
+  box-shadow: 0px -4px 8px rgba(0, 0, 0, 0.2);
+}
